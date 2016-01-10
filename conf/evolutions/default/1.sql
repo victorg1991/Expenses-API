@@ -20,6 +20,17 @@ create table consultant (
 );
 create sequence consultant_seq;
 
+create table profit (
+  id                            bigint not null,
+  quantity                      float,
+  description                   varchar(255),
+  id_profit                     integer,
+  user_id                       bigint,
+  creation_date                 timestamp not null,
+  constraint pk_profit primary key (id)
+);
+create sequence profit_seq;
+
 create table spending (
   id                            bigint not null,
   quantity                      float,
@@ -34,6 +45,9 @@ create sequence spending_seq;
 alter table advised_user add constraint fk_advised_user_consultant_id foreign key (consultant_id) references consultant (id) on delete restrict on update restrict;
 create index ix_advised_user_consultant_id on advised_user (consultant_id);
 
+alter table profit add constraint fk_profit_user_id foreign key (user_id) references advised_user (id) on delete restrict on update restrict;
+create index ix_profit_user_id on profit (user_id);
+
 alter table spending add constraint fk_spending_user_id foreign key (user_id) references advised_user (id) on delete restrict on update restrict;
 create index ix_spending_user_id on spending (user_id);
 
@@ -43,6 +57,9 @@ create index ix_spending_user_id on spending (user_id);
 alter table advised_user drop constraint if exists fk_advised_user_consultant_id;
 drop index if exists ix_advised_user_consultant_id;
 
+alter table profit drop constraint if exists fk_profit_user_id;
+drop index if exists ix_profit_user_id;
+
 alter table spending drop constraint if exists fk_spending_user_id;
 drop index if exists ix_spending_user_id;
 
@@ -51,6 +68,9 @@ drop sequence if exists advised_user_seq;
 
 drop table if exists consultant;
 drop sequence if exists consultant_seq;
+
+drop table if exists profit;
+drop sequence if exists profit_seq;
 
 drop table if exists spending;
 drop sequence if exists spending_seq;

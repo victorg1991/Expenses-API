@@ -6,11 +6,12 @@ import javax.persistence.MappedSuperclass;
 import play.data.validation.Constraints.Required;
 
 import com.avaje.ebean.Model;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @MappedSuperclass
 public class User extends Model {
   
 	@Id
+	@JsonIgnore
 	protected long id;
 
 	@Required

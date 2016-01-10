@@ -96,7 +96,6 @@ public class SpendingTest {
 			assertFalse(form.hasErrors());
 			assertNotNull(spending);
 			assertNotNull(spendingFetched);
-			
 		});
     }
 	
@@ -113,7 +112,6 @@ public class SpendingTest {
 		spending.setDescription("pago de lentillas");
 		
 		spending.save();
-		
 	}
 	
 	private AdvisedUser createAdvisedUser(){
@@ -126,5 +124,4 @@ public class SpendingTest {
 		return user;
 	}
 	
-
 }

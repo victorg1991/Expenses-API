@@ -107,4 +107,23 @@ public class AdvisedUsers extends Controller{
 		
 		return badRequest("unsupported format");
 	}
+	
+	public Result getConsultantFromAdvisedUser(Integer aId){
+		
+		AdvisedUser advisedUser = AdvisedUser.findAdvisedUserWithId(aId);
+		
+		if(advisedUser == null || advisedUser.getConsultant() == null){
+			return notFound();
+		}
+		
+		Consultant consultant = advisedUser.getConsultant();
+		
+		if(RequestUtils.acceptsJson(request())){
+			return ok(Json.toJson(consultant));
+		} else if (RequestUtils.acceptsXml(request())){
+			return ok(views.xml.consultant.render(consultant));
+		}
+		
+		return badRequest("unsupported format");
+	}
 }

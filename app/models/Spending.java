@@ -8,7 +8,7 @@ import play.data.validation.Constraints.Required;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Spending {
+public class Spending extends CashFlow{
 
 	@Required
 	private Integer idSpending;
@@ -16,7 +16,7 @@ public class Spending {
 	@ManyToOne
 	@JsonIgnore
 	@Required
-	private AdvisedUser adviseduser;
+	private AdvisedUser user;
 	
 	
 }

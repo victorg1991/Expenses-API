@@ -107,4 +107,10 @@ public class AdvisedUsers extends Controller{
 		
 		return badRequest("unsupported format");
 	}
+	
+	public Result getConsultantFromAdvisedUser(Integer aId){
+		
+		
+		return ok();
+	}
 }

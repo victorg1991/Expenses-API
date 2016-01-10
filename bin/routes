@@ -13,11 +13,12 @@ DELETE  /v1/consultant/$cId<[0-9]*>					controllers.Consultants.delete(cId: Inte
 PUT		/v1/consultant/$cId<[0-9]*>					controllers.Consultants.update(cId: Integer)
 GET		/v1/consultant/$cId<[0-9]*>/advisedusers 	controllers.Consultants.getAdvisedUsers(cId: Integer)
 
-GET		/v1/advisedusers							controllers.AdvisedUsers.getAllAdvisedUsers()
 GET		/v1/adviseduser/$aId<[0-9]*>				controllers.AdvisedUsers.retrieve(aId: Integer)
 POST	/v1/adviseduser								controllers.AdvisedUsers.create()
 PUT		/v1/adviseduser/$aId<[0-9]*>				controllers.AdvisedUsers.update(aId: Integer)
 DELETE	/v1/adviseduser/$aId<[0-9]*>				controllers.AdvisedUsers.delete(aId: Integer)
+GET		/v1/advisedusers							controllers.AdvisedUsers.getAllAdvisedUsers()
+GET		/v1/adviseduser/$aId<[0-9]*>/consultant		controllers.AdvisedUsers.getConsultantFromAdvisedUser(aId: Integer)
 
 
 # Map static resources from the /public folder to the /assets URL path

@@ -1,0 +1,4 @@
+@(consultant: Consultant)
+<consultant id="@consultant.getIdConsultant()">
+	<name>@consultant.getName()</name>
+</consultant>

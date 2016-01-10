@@ -1,0 +1,4 @@
+@(adviseduser: AdvisedUser)
+<adviseduser id="@adviseduser.getIdAdvisedUser()">
+	<name>@adviseduser.getName()</name>
+</adviseduser>

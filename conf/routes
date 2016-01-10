@@ -1,0 +1,24 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+POST     /                           	controllers.Application.index()
+GET     /test                           controllers.Application.test()
+
+GET		/v1/consultants								controllers.Consultants.getAllConsultants()
+GET		/v1/consultant/$cId<[0-9]*>					controllers.Consultants.retrieve(cId: Integer)
+POST	/v1/consultant								controllers.Consultants.create()
+DELETE  /v1/consultant/$cId<[0-9]*>					controllers.Consultants.delete(cId: Integer)
+PUT		/v1/consultant/$cId<[0-9]*>					controllers.Consultants.update(cId: Integer)
+GET		/v1/consultant/$cId<[0-9]*>/advisedusers 	controllers.Consultants.getAdvisedUsers(cId: Integer)
+
+GET		/v1/advisedusers							controllers.AdvisedUsers.getAllAdvisedUsers()
+GET		/v1/adviseduser/$aId<[0-9]*>				controllers.AdvisedUsers.retrieve(aId: Integer)
+POST	/v1/adviseduser								controllers.AdvisedUsers.create()
+PUT		/v1/adviseduser/$aId<[0-9]*>				controllers.AdvisedUsers.update(aId: Integer)
+DELETE	/v1/adviseduser/$aId<[0-9]*>				controllers.AdvisedUsers.delete(aId: Integer)
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

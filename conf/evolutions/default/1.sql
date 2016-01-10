@@ -24,9 +24,9 @@ create table spending (
   id                            bigint not null,
   quantity                      float,
   description                   varchar(255),
-  e_date                        timestamp,
   id_spending                   integer,
   user_id                       bigint,
+  creation_date                 timestamp not null,
   constraint pk_spending primary key (id)
 );
 create sequence spending_seq;

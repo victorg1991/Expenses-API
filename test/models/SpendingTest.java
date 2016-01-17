@@ -1,4 +1,4 @@
-package models;
+  package models;
 
 import static org.junit.Assert.*;
 import static play.test.Helpers.fakeApplication;

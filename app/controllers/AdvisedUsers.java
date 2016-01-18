@@ -26,7 +26,7 @@ public class AdvisedUsers extends Controller{
     		return Results.status(409, "already exists");
     	}
     	
-    	Integer idConsultant = RequestUtils.getIntegerFromBody(request());
+    	Integer idConsultant = RequestUtils.getIntegerFromBody(request(), "idConsultant");
     	
     	if(idConsultant != null){   		
     		Consultant consultant = Consultant.findConsultantWithId(idConsultant);

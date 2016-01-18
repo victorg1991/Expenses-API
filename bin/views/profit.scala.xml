@@ -1,0 +1,6 @@
+@(profit: Profit)
+<adviseduser id="@profit.getIdProfit()">
+	<quantity>@profit.getQuantity()</quantity>
+	<description>@profit.getDescription()</description>
+	<date>@profit.getCreationDate()</date>
+</adviseduser>

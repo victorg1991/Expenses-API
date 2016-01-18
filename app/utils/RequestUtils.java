@@ -6,11 +6,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 public class RequestUtils {
 	
-	public static Integer getIntegerFromBody(Request request){
+	public static Integer getIntegerFromBody(Request request, String fieldName){
 		
 		JsonNode body = request.body().asJson();
 
-		return body.get("idConsultant").asInt();
+		JsonNode field = body.get(fieldName);
+		
+		return field == null ? null: field.asInt();
 	}
 
 	public static boolean acceptsJson(Request request) {

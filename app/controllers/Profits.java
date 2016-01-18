@@ -1,6 +1,8 @@
 package controllers;
 
 
+import java.util.List;
+
 import models.AdvisedUser;
 import models.Profit;
 import play.data.Form;
@@ -8,9 +10,10 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Results;
+import serializer.JsonHelper;
 import utils.RequestUtils;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 
 public class Profits extends Controller{
 	
@@ -46,6 +49,18 @@ public class Profits extends Controller{
         return created();
 	}
 	
+	public Result delete(Integer pId){
+		Profit profit = Profit.findProfitWithId(pId);
+		
+		if(profit == null){
+			return notFound();
+		}
+		
+		profit.delete();
+		
+		return ok();
+	}
+	
 	public Result retrieve(Integer pId){
 		
 		Profit profit = Profit.findProfitWithId(pId);
@@ -55,15 +70,51 @@ public class Profits extends Controller{
 		}
 		
 		if(RequestUtils.acceptsJson(request())){
-			ObjectNode jsonResponse = (ObjectNode) Json.toJson(profit);
-			jsonResponse.put("idAdviseruser", profit.getUser().getIdAdvisedUser());
-			
-			return ok(jsonResponse);
+			return ok(JsonHelper.<Profit>getJsonNode(profit));
 		} else if (RequestUtils.acceptsXml(request())){
 			return ok(views.xml.profit.render(profit));
 		}
 		
 		return badRequest("unsupported format");
+	}
+	
+	public Result getAllProfits(){
+		
+		List<Profit> profits = Profit.findAllProfits();
+		
+		
+		if(RequestUtils.acceptsJson(request())){
+			ArrayNode profitJson = Json.newArray();
+			
+			for(Profit profit : profits){
+				profitJson.add(JsonHelper.<Profit>getJsonNode(profit));
+			}
+			
+			return ok(profitJson);
+		} else if (RequestUtils.acceptsXml(request())){
+			return ok(views.xml.profits.render(profits));
+		}
+		
+		return badRequest("unsupported format");
+	}
+	
+	public Result getAdvisedUserFromProfit(Integer pId){
+		Profit profit = Profit.findProfitWithId(pId);
+		
+		if(profit == null){
+			return notFound();
+		}
+		
+		AdvisedUser advisedUser = profit.getUser();
+		
+		if(RequestUtils.acceptsJson(request())){
+			return ok(Json.toJson(advisedUser));
+		} else if (RequestUtils.acceptsXml(request())){
+			return ok(views.xml.adviseduser.render(advisedUser));
+		}
+		
+		return badRequest("unsupported format");
+	
 	}
 
 }

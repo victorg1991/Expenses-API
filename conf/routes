@@ -22,6 +22,9 @@ GET		/v1/adviseduser/$aId<[0-9]*>/consultant		controllers.AdvisedUsers.getConsul
 
 POST	/v1/profit									controllers.Profits.create()
 GET		/v1/profit/$pId<[0-9]*>						controllers.Profits.retrieve(pId: Integer)
+DELETE	/v1/profit/$pId<[0-9]*>						controllers.Profits.delete(pId: Integer)
+GET		/v1/profits									controllers.Profits.getAllProfits()
+GET		/v1/profit/$pId<[0-9]*>/adviseduser			controllers.Profits.getAdvisedUserFromProfit(pId: Integer)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

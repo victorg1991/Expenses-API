@@ -1,0 +1,6 @@
+@(spendings: List[Spending])
+<spendings>
+	@for(s <- spendings) {
+		@spending(s)
+	}
+</spendings>

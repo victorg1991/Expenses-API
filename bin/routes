@@ -26,5 +26,11 @@ DELETE	/v1/profit/$pId<[0-9]*>						controllers.Profits.delete(pId: Integer)
 GET		/v1/profits									controllers.Profits.getAllProfits()
 GET		/v1/profit/$pId<[0-9]*>/adviseduser			controllers.Profits.getAdvisedUserFromProfit(pId: Integer)
 
+POST	/v1/spending								controllers.Spendings.create()
+GET		/v1/spending/$sId<[0-9]*>					controllers.Spendings.retrieve(sId: Integer)
+DELETE	/v1/spending/$sId<[0-9]*>					controllers.Spendings.delete(sId: Integer)
+GET		/v1/spendings								controllers.Spendings.getAllSpendings()
+GET		/v1/spending/$sId<[0-9]*>/adviseduser		controllers.Spendings.getAdvisedUserFromSpending(sId: Integer)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

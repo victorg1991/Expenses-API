@@ -6,6 +6,9 @@
 create table advised_user (
   id                            bigint not null,
   name                          varchar(255),
+  dni                           varchar(255),
+  city                          varchar(255),
+  email                         varchar(255),
   id_advised_user               integer,
   consultant_id                 bigint,
   constraint pk_advised_user primary key (id)
@@ -15,6 +18,9 @@ create sequence advised_user_seq;
 create table consultant (
   id                            bigint not null,
   name                          varchar(255),
+  dni                           varchar(255),
+  city                          varchar(255),
+  email                         varchar(255),
   id_consultant                 integer,
   constraint pk_consultant primary key (id)
 );

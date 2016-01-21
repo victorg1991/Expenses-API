@@ -31,7 +31,7 @@ public class JsonSerializeHelper {
 		ObjectNode node = (ObjectNode) Json.toJson(user);
 		
 		if(user.getConsultant() != null) {
-			node.put("idConsultant", user.getConsultant().getId());
+			node.put("idConsultant", user.getConsultant().getIdConsultant());
 		}
 		
 		return node;	

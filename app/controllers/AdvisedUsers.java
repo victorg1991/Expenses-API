@@ -135,4 +135,32 @@ public class AdvisedUsers extends Controller{
 		
 		return badRequest("unsupported format");
 	}
+	
+	public Result updateConsultant(Integer aId){
+	
+		Integer idConsultant; 
+		try {
+			idConsultant = new Integer(request().getQueryString("value"));
+		} catch(Exception ex){
+			return badRequest("You need to add parameter value with the id of the new consultant"); 
+		}
+		
+		AdvisedUser advisedUser = AdvisedUser.findAdvisedUserWithId(aId);
+		
+		if(advisedUser == null){
+			return notFound("adviseduser not found");
+		}
+		
+		Consultant consultant = Consultant.findConsultantWithId(idConsultant);
+		
+		if(consultant == null){
+			return notFound("new consultant id not found");
+		}
+		
+		advisedUser.setConsultant(consultant);
+
+		advisedUser.update();
+		
+		return ok();
+	}
 }

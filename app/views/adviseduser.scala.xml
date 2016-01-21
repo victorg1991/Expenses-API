@@ -1,4 +1,10 @@
 @(adviseduser: AdvisedUser)
 <adviseduser id="@adviseduser.getIdAdvisedUser()">
 	<name>@adviseduser.getName()</name>
+	<email>@adviseduser.getEmail()</email>
+	<city>@adviseduser.getCity()</city>
+	<dni>@adviseduser.getDni()</dni>
+	@if(adviseduser.getConsultant() != null){
+		<idconsultant>@adviseduser.getConsultant().getIdConsultant()</idconsultant>
+	}
 </adviseduser>

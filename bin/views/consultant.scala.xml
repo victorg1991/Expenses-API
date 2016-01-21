@@ -1,4 +1,7 @@
 @(consultant: Consultant)
 <consultant id="@consultant.getIdConsultant()">
 	<name>@consultant.getName()</name>
+	<email>@consultant.getEmail()</email>
+	<city>@consultant.getCity()</city>
+	<dni>@consultant.getDni()</dni>
 </consultant>

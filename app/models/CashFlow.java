@@ -6,11 +6,12 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 import play.data.validation.Constraints.Required;
+import serializer.JsonDateSerializer;
 
 import com.avaje.ebean.Model;
 import com.avaje.ebean.annotation.CreatedTimestamp;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @MappedSuperclass
 public class CashFlow extends Model{
@@ -26,8 +27,8 @@ public class CashFlow extends Model{
 	protected String description;
 	
     @CreatedTimestamp
-    //@JsonSerialize(using = JsonDateSerializer.class)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
+    @JsonSerialize(using = JsonDateSerializer.class)
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
     Timestamp creationDate;
 
 	public long getId() {

@@ -10,7 +10,7 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Results;
-import serializer.JsonHelper;
+import serializer.JsonSerializeHelper;
 import utils.RequestUtils;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -70,7 +70,7 @@ public class Spendings extends Controller{
 		}
 		
 		if(RequestUtils.acceptsJson(request())){
-			return ok(JsonHelper.<Spending>getJsonNode(spending));
+			return ok(JsonSerializeHelper.<Spending>serializeCashFlow(spending));
 		} else if (RequestUtils.acceptsXml(request())){
 			return ok(views.xml.spending.render(spending));
 		}
@@ -87,7 +87,7 @@ public class Spendings extends Controller{
 			ArrayNode spendingJson = Json.newArray();
 			
 			for(Spending spending : spendings){
-				spendingJson.add(JsonHelper.<Spending>getJsonNode(spending));
+				spendingJson.add(JsonSerializeHelper.<Spending>serializeCashFlow(spending));
 			}
 			
 			return ok(spendingJson);
@@ -116,5 +116,48 @@ public class Spendings extends Controller{
 		return badRequest("unsupported format");
 	
 	}
-
+	
+	public Result updateQuantity(Integer sId){
+		
+		float newQuantity;
+		
+		try {
+			newQuantity = Float.valueOf(request().getQueryString("value"));
+		} catch(Exception ex) {
+			return badRequest("You have to include argument 'value' to the call with numberic value");
+		}
+		
+		Spending spending = Spending.findSpendingWithId(sId);
+		
+		if(spending == null){
+			return notFound();
+		}
+		
+		spending.setQuantity(newQuantity);
+		
+		spending.update();
+		
+		return ok();
+	}
+	
+	public Result updateDescription(Integer sId) {
+		
+		String newDescription = request().getQueryString("value");
+		
+		if(newDescription == null) {
+			return badRequest("You have to include argument 'value'");
+		}
+		
+		Spending spending = Spending.findSpendingWithId(sId);
+		
+		if(spending == null){
+			return notFound();
+		}
+		
+		spending.setDescription(newDescription);
+		
+		spending.update();
+		
+		return ok();
+	}
 }

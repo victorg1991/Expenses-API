@@ -2,9 +2,6 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-POST     /                           	controllers.Application.index()
-GET     /test                           controllers.Application.test()
 
 GET		/v1/consultants								controllers.Consultants.getAllConsultants()
 GET		/v1/consultant/$cId<[0-9]*>					controllers.Consultants.retrieve(cId: Integer)
@@ -25,12 +22,17 @@ GET		/v1/profit/$pId<[0-9]*>						controllers.Profits.retrieve(pId: Integer)
 DELETE	/v1/profit/$pId<[0-9]*>						controllers.Profits.delete(pId: Integer)
 GET		/v1/profits									controllers.Profits.getAllProfits()
 GET		/v1/profit/$pId<[0-9]*>/adviseduser			controllers.Profits.getAdvisedUserFromProfit(pId: Integer)
+PUT		/v1/profit/$pId<[0-9]*>/quantity			controllers.Profits.updateQuantity(pId: Integer)
+PUT		/v1/profit/$pId<[0-9]*>/description		controllers.Profits.updateDescription(pId: Integer)
 
 POST	/v1/spending								controllers.Spendings.create()
 GET		/v1/spending/$sId<[0-9]*>					controllers.Spendings.retrieve(sId: Integer)
 DELETE	/v1/spending/$sId<[0-9]*>					controllers.Spendings.delete(sId: Integer)
 GET		/v1/spendings								controllers.Spendings.getAllSpendings()
 GET		/v1/spending/$sId<[0-9]*>/adviseduser		controllers.Spendings.getAdvisedUserFromSpending(sId: Integer)
+PUT		/v1/spending/$sId<[0-9]*>/quantity			controllers.Spendings.updateQuantity(sId: Integer)
+PUT		/v1/spending/$sId<[0-9]*>/description		controllers.Spendings.updateDescription(sId: Integer)	
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

@@ -1,1 +1,2 @@
 consultantregistered=Consultant id already registered
+unsupportedformat=Unsupported format, supported formats: xml and json

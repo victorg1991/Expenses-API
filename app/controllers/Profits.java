@@ -5,12 +5,13 @@ import java.util.List;
 
 import models.AdvisedUser;
 import models.Profit;
+import models.Spending;
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Results;
-import serializer.JsonHelper;
+import serializer.JsonSerializeHelper;
 import utils.RequestUtils;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -70,7 +71,7 @@ public class Profits extends Controller{
 		}
 		
 		if(RequestUtils.acceptsJson(request())){
-			return ok(JsonHelper.<Profit>getJsonNode(profit));
+			return ok(JsonSerializeHelper.<Profit>serializeCashFlow(profit));
 		} else if (RequestUtils.acceptsXml(request())){
 			return ok(views.xml.profit.render(profit));
 		}
@@ -87,7 +88,7 @@ public class Profits extends Controller{
 			ArrayNode profitJson = Json.newArray();
 			
 			for(Profit profit : profits){
-				profitJson.add(JsonHelper.<Profit>getJsonNode(profit));
+				profitJson.add(JsonSerializeHelper.<Profit>serializeCashFlow(profit));
 			}
 			
 			return ok(profitJson);
@@ -115,6 +116,50 @@ public class Profits extends Controller{
 		
 		return badRequest("unsupported format");
 	
+	}
+	
+	public Result updateQuantity(Integer pId){
+		
+		float newQuantity;
+		
+		try {
+			newQuantity = Float.valueOf(request().getQueryString("value"));
+		} catch(Exception ex) {
+			return badRequest("You have to include argument 'value' to the call with numberic value");
+		}
+		
+		Profit profit = Profit.findProfitWithId(pId);
+		
+		if(profit == null){
+			return notFound();
+		}
+		
+		profit.setQuantity(newQuantity);
+		
+		profit.update();
+		
+		return ok();
+	}
+	
+	public Result updateDescription(Integer pId) {
+		
+		String newDescription = request().getQueryString("value");
+		
+		if(newDescription == null) {
+			return badRequest("You have to include argument 'value'");
+		}
+		
+		Profit profit = Profit.findProfitWithId(pId);
+		
+		if(profit == null){
+			return notFound();
+		}
+		
+		profit.setDescription(newDescription);
+		
+		profit.update();
+		
+		return ok();
 	}
 
 }

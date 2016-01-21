@@ -2,6 +2,8 @@ package controllers;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.node.ArrayNode;
+
 import models.AdvisedUser;
 import models.Consultant;
 import play.data.Form;
@@ -9,6 +11,7 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Results;
+import serializer.JsonSerializeHelper;
 import utils.RequestUtils;
 
 public class AdvisedUsers extends Controller{
@@ -63,7 +66,7 @@ public class AdvisedUsers extends Controller{
 		}
 		
 		if(RequestUtils.acceptsJson(request())){
-			return ok(Json.toJson(advisedUser));
+			return ok(Json.toJson(JsonSerializeHelper.serializeAdvisedUser(advisedUser)));
 		} else if (RequestUtils.acceptsXml(request())){
 			return ok(views.xml.adviseduser.render(advisedUser));
 		}
@@ -100,7 +103,13 @@ public class AdvisedUsers extends Controller{
 		List<AdvisedUser> advisedUsers = AdvisedUser.findAllAdvisedUsers();
 		
 		if(RequestUtils.acceptsJson(request())){
-			return ok(Json.toJson(advisedUsers));
+			
+			ArrayNode advisedUsersJson = Json.newArray();
+			
+			for(AdvisedUser user : advisedUsers){
+				advisedUsersJson.add(JsonSerializeHelper.serializeAdvisedUser(user));
+			}
+			return ok(Json.toJson(advisedUsersJson));
 		} else if (RequestUtils.acceptsXml(request())){
 			return ok(views.xml.advisedusers.render(advisedUsers));
 		}

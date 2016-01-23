@@ -5,16 +5,12 @@ import java.util.List;
 
 import models.AdvisedUser;
 import models.Profit;
-import models.Spending;
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Results;
-import serializer.JsonSerializeHelper;
 import utils.RequestUtils;
-
-import com.fasterxml.jackson.databind.node.ArrayNode;
 
 public class Profits extends Controller{
 	

@@ -7,7 +7,6 @@ import javax.persistence.MappedSuperclass;
 
 import play.data.validation.Constraints.Required;
 import serializer.JsonDateSerializer;
-import serializer.JsonFloatSerializer;
 
 import com.avaje.ebean.Model;
 import com.avaje.ebean.annotation.CreatedTimestamp;
@@ -22,7 +21,6 @@ public class CashFlow extends Model{
 	protected long id;
 	
 	@Required
-	//@JsonSerialize(using = JsonFloatSerializer.class)
 	protected float quantity;
 	
 	@Required

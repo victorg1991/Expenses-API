@@ -14,12 +14,12 @@ import org.junit.Test;
 import play.mvc.Http.RequestBuilder;
 import play.mvc.Result;
 
-public class CSpendingTest {
+public class CProfitTest {
 
 	@Test
-	public void responseSpendingJson() {
+	public void responseProfitJson() {
 		running(fakeApplication(inMemoryDatabase()), () -> {
-    		RequestBuilder request = fakeRequest(GET, "/v1/spendings").header("Accept", "application/json");
+    		RequestBuilder request = fakeRequest(GET, "/v1/profits").header("Accept", "application/json");
     		
     		Result result = route(request);
     		assertNotNull(result);
@@ -28,9 +28,9 @@ public class CSpendingTest {
 	}
 	
 	@Test
-	public void responseSpendingXml() {
+	public void responseProfitXml() {
 		running(fakeApplication(inMemoryDatabase()), () -> {
-    		RequestBuilder request = fakeRequest(GET, "/v1/spendings").header("Accept", "application/xml");
+    		RequestBuilder request = fakeRequest(GET, "/v1/profits").header("Accept", "application/xml");
     		
     		Result result = route(request);
     		assertNotNull(result);

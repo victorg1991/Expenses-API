@@ -18,7 +18,6 @@ public class Spending extends CashFlow{
 	private Integer idSpending;
 	
 	@ManyToOne
-	//@JsonIgnore
 	@JsonProperty("idAdvisedUser")
 	@JsonSerialize(using = JsonAdvisedUserSerializer.class)
 	private AdvisedUser user;

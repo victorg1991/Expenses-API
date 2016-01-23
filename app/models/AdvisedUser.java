@@ -9,8 +9,12 @@ import javax.persistence.OneToMany;
 import javax.validation.Valid;
 
 import play.data.validation.Constraints.Required;
+import serializer.JsonAdvisedUserSerializer;
+import serializer.JsonConsultantSerializer;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
 public class AdvisedUser extends User{
@@ -19,7 +23,8 @@ public class AdvisedUser extends User{
 	private Integer idAdvisedUser;
 	
 	@ManyToOne
-	@JsonIgnore
+	@JsonProperty("idConsultant")
+	@JsonSerialize(using = JsonConsultantSerializer.class)
 	private Consultant consultant;
 	
 	@OneToMany(mappedBy="user")

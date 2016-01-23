@@ -6,8 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 import play.data.validation.Constraints.Required;
+import serializer.JsonAdvisedUserSerializer;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
 public class Spending extends CashFlow{
@@ -16,7 +18,9 @@ public class Spending extends CashFlow{
 	private Integer idSpending;
 	
 	@ManyToOne
-	@JsonIgnore
+	//@JsonIgnore
+	@JsonProperty("idAdvisedUser")
+	@JsonSerialize(using = JsonAdvisedUserSerializer.class)
 	private AdvisedUser user;
 	
 	public static final Find<Long, Spending> find = new Find<Long, Spending>(){};

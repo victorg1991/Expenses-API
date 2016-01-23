@@ -22,7 +22,7 @@ public class CashFlow extends Model{
 	protected long id;
 	
 	@Required
-	@JsonSerialize(using = JsonFloatSerializer.class)
+	//@JsonSerialize(using = JsonFloatSerializer.class)
 	protected float quantity;
 	
 	@Required

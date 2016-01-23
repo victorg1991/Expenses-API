@@ -10,7 +10,6 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Results;
-import serializer.JsonSerializeHelper;
 import utils.RequestUtils;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -70,7 +69,7 @@ public class Spendings extends Controller{
 		}
 		
 		if(RequestUtils.acceptsJson(request())){
-			return ok(JsonSerializeHelper.<Spending>serializeCashFlow(spending));
+			return ok(Json.toJson(spending));
 		} else if (RequestUtils.acceptsXml(request())){
 			return ok(views.xml.spending.render(spending));
 		}
@@ -84,13 +83,7 @@ public class Spendings extends Controller{
 		
 		
 		if(RequestUtils.acceptsJson(request())){
-			ArrayNode spendingJson = Json.newArray();
-			
-			for(Spending spending : spendings){
-				spendingJson.add(JsonSerializeHelper.<Spending>serializeCashFlow(spending));
-			}
-			
-			return ok(spendingJson);
+			return ok(Json.toJson(spendings));
 		} else if (RequestUtils.acceptsXml(request())){
 			return ok(views.xml.spendings.render(spendings));
 		}

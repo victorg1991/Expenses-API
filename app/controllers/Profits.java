@@ -71,7 +71,7 @@ public class Profits extends Controller{
 		}
 		
 		if(RequestUtils.acceptsJson(request())){
-			return ok(JsonSerializeHelper.<Profit>serializeCashFlow(profit));
+			return ok(Json.toJson(profit));
 		} else if (RequestUtils.acceptsXml(request())){
 			return ok(views.xml.profit.render(profit));
 		}
@@ -85,13 +85,7 @@ public class Profits extends Controller{
 		
 		
 		if(RequestUtils.acceptsJson(request())){
-			ArrayNode profitJson = Json.newArray();
-			
-			for(Profit profit : profits){
-				profitJson.add(JsonSerializeHelper.<Profit>serializeCashFlow(profit));
-			}
-			
-			return ok(profitJson);
+			return ok(Json.toJson(profits));
 		} else if (RequestUtils.acceptsXml(request())){
 			return ok(views.xml.profits.render(profits));
 		}

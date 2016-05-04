@@ -4,7 +4,7 @@
 # --- !Ups
 
 create table advised_user (
-  id                            bigint not null,
+  id                            bigint auto_increment not null,
   name                          varchar(255),
   dni                           varchar(255),
   city                          varchar(255),
@@ -13,10 +13,9 @@ create table advised_user (
   consultant_id                 bigint,
   constraint pk_advised_user primary key (id)
 );
-create sequence advised_user_seq;
 
 create table consultant (
-  id                            bigint not null,
+  id                            bigint auto_increment not null,
   name                          varchar(255),
   dni                           varchar(255),
   city                          varchar(255),
@@ -24,29 +23,26 @@ create table consultant (
   id_consultant                 integer,
   constraint pk_consultant primary key (id)
 );
-create sequence consultant_seq;
 
 create table profit (
-  id                            bigint not null,
+  id                            bigint auto_increment not null,
   quantity                      float,
   description                   varchar(255),
   id_profit                     integer,
   user_id                       bigint,
-  creation_date                 timestamp not null,
+  creation_date                 datetime(6) not null,
   constraint pk_profit primary key (id)
 );
-create sequence profit_seq;
 
 create table spending (
-  id                            bigint not null,
+  id                            bigint auto_increment not null,
   quantity                      float,
   description                   varchar(255),
   id_spending                   integer,
   user_id                       bigint,
-  creation_date                 timestamp not null,
+  creation_date                 datetime(6) not null,
   constraint pk_spending primary key (id)
 );
-create sequence spending_seq;
 
 alter table advised_user add constraint fk_advised_user_consultant_id foreign key (consultant_id) references consultant (id) on delete restrict on update restrict;
 create index ix_advised_user_consultant_id on advised_user (consultant_id);
@@ -60,24 +56,20 @@ create index ix_spending_user_id on spending (user_id);
 
 # --- !Downs
 
-alter table advised_user drop constraint if exists fk_advised_user_consultant_id;
-drop index if exists ix_advised_user_consultant_id;
+alter table advised_user drop foreign key fk_advised_user_consultant_id;
+drop index ix_advised_user_consultant_id on advised_user;
 
-alter table profit drop constraint if exists fk_profit_user_id;
-drop index if exists ix_profit_user_id;
+alter table profit drop foreign key fk_profit_user_id;
+drop index ix_profit_user_id on profit;
 
-alter table spending drop constraint if exists fk_spending_user_id;
-drop index if exists ix_spending_user_id;
+alter table spending drop foreign key fk_spending_user_id;
+drop index ix_spending_user_id on spending;
 
 drop table if exists advised_user;
-drop sequence if exists advised_user_seq;
 
 drop table if exists consultant;
-drop sequence if exists consultant_seq;
 
 drop table if exists profit;
-drop sequence if exists profit_seq;
 
 drop table if exists spending;
-drop sequence if exists spending_seq;
 

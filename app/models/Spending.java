@@ -33,7 +33,6 @@ public class Spending extends CashFlow{
 	}
 	
 	public static Spending findSpendingWithId(int id){
-		
 		return find.where().eq("idSpending", id).findUnique();	
 	}
 	
@@ -56,5 +55,4 @@ public class Spending extends CashFlow{
 	public void setUser(AdvisedUser user) {
 		this.user = user;
 	}
-	
 }

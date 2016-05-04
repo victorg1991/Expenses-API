@@ -9,10 +9,8 @@ import javax.persistence.OneToMany;
 import javax.validation.Valid;
 
 import play.data.validation.Constraints.Required;
-import serializer.JsonAdvisedUserSerializer;
 import serializer.JsonConsultantSerializer;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -42,7 +40,6 @@ public class AdvisedUser extends User{
 	}
 	
 	public static AdvisedUser findAdvisedUserWithId(int id){
-		
 		return find.where().eq("idAdvisedUser", id).findUnique();	
 	}
 	
@@ -50,7 +47,6 @@ public class AdvisedUser extends User{
 		return find.findList();
 	}
 	
-
 	public boolean updateAdvisedUser(AdvisedUser newAdvisedUser){
 		boolean changed = false;
 		
@@ -70,6 +66,7 @@ public class AdvisedUser extends User{
 		
 		return changed;
 	}
+	
 	public Integer getIdAdvisedUser() {
 		return idAdvisedUser;
 	}
@@ -85,6 +82,4 @@ public class AdvisedUser extends User{
 	public void setConsultant(Consultant consultant) {
 		this.consultant = consultant;
 	}
-	
-	
 }

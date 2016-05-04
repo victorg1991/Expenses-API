@@ -33,7 +33,6 @@ public class Profit extends CashFlow{
 	}
 	
 	public static Profit findProfitWithId(int id){
-		
 		return find.where().eq("idProfit", id).findUnique();	
 	}
 	
@@ -55,6 +54,5 @@ public class Profit extends CashFlow{
 
 	public void setUser(AdvisedUser user) {
 		this.user = user;
-	}
-	
+	}	
 }

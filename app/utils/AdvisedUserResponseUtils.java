@@ -3,7 +3,6 @@ package utils;
 import java.util.List;
 
 import models.AdvisedUser;
-import models.Consultant;
 import play.libs.Json;
 import play.mvc.Http.Request;
 import play.mvc.Result;
@@ -33,8 +32,7 @@ public class AdvisedUserResponseUtils {
 			return Results.ok(views.xml.adviseduser.render(a));
 		}
 		
-		return Results.badRequest("unsupported format");
-		
+		return Results.badRequest("unsupported format");	
 	}
 	
 	private static Result getResultForAdvisedUserRequest(List<AdvisedUser> advisedusers, Request request){
@@ -46,8 +44,5 @@ public class AdvisedUserResponseUtils {
 		}
 		
 		return Results.badRequest("unsupported format");
-		
 	}
-
-
 }

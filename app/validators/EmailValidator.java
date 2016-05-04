@@ -30,8 +30,6 @@ public class EmailValidator extends Constraints.Validator<String> implements Con
 
 	@Override
 	public void initialize(Email arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 }
 

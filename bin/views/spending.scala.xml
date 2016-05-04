@@ -1,7 +1,0 @@
-@(spending: Spending)
-<spending id="@spending.getIdSpending()">
-	<idadviseduser>@spending.getUser().getIdAdvisedUser()</idadviseduser>
-	<quantity>@spending.getQuantity()</quantity>
-	<description>@spending.getDescription()</description>
-	<date>@spending.getCreationDate()</date>
-</spending>

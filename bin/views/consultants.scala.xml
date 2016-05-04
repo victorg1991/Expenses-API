@@ -1,6 +1,0 @@
-@(consultants: List[Consultant])
-<consultants>
-	@for(c <- consultants) {
-		@consultant(c)
-	}
-</consultants>

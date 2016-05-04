@@ -8,3 +8,14 @@ target
 /RUNNING_PID
 activator
 activator*
+*.db
+.cache-main
+.cache-tests
+bin
+.metadata
+.history
+dist
+project/project
+project/target
+/out
+/*.iml

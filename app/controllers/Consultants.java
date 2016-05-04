@@ -98,8 +98,6 @@ public class Consultants extends Controller{
 		}
 		
 		return badRequest("unsupported format");
-		
-	
 	}
 	
 	public Result getAllConsultants(){

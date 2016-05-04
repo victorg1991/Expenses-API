@@ -1,6 +1,0 @@
-@(profits: List[Profit])
-<profits>
-	@for(p <- profits) {
-		@profit(p)
-	}
-</profits>

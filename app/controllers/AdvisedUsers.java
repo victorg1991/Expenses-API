@@ -69,7 +69,6 @@ public class AdvisedUsers extends Controller{
 		}
 		
 		return badRequest("unsupported format");
-	
 	}
 	
 	public Result update(Integer aId){

@@ -30,8 +30,7 @@ public class ConsultantResponseUtils {
 			return Results.ok(views.xml.consultant.render(c));
 		}
 		
-		return Results.badRequest("unsupported format");
-		
+		return Results.badRequest("unsupported format");	
 	}
 	
 	private static Result getResultForConsulsantsRequest(List<Consultant> consultants, Request request){
@@ -43,7 +42,5 @@ public class ConsultantResponseUtils {
 		}
 		
 		return Results.badRequest("unsupported format");
-		
 	}
-
 }

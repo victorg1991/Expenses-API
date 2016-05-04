@@ -1,6 +1,0 @@
-@(advisedusers: List[AdvisedUser])
-<advisedusers>
-	@for(a <- advisedusers) {
-		@adviseduser(a)
-	}
-</advisedusers>

@@ -18,7 +18,6 @@ public class Consultant extends User{
 	@Required
 	private Integer idConsultant;
 	
-	
 	@OneToMany(mappedBy="consultant")
 	@Valid
 	private List<AdvisedUser> users = new ArrayList<AdvisedUser>();
@@ -77,6 +76,4 @@ public class Consultant extends User{
 	public void setIdConsultant(Integer idConsultant) {
 		this.idConsultant = idConsultant;
 	}
-	
-	
 }

@@ -28,7 +28,6 @@ public class CashFlow extends Model{
 	
     @CreatedTimestamp
     @JsonSerialize(using = JsonDateSerializer.class)
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
     Timestamp creationDate;
 
 	public long getId() {
